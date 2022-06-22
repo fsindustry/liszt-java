@@ -70,7 +70,7 @@ class Solution {
         // [l, r]区间为查找的范围区间
         int l = 0, r = nums.length - 1;
         // 循环不变量：[l, r]区间为查找范围区间
-        while (l <= r) {
+        while (l <= r) { // l=r时，[l, r]区间仍然有效，故写<=
             // 获取中间值
             int mid = l + (r - l) / 2;
             if (nums[mid] == target) {
