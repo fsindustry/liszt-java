@@ -58,7 +58,7 @@ public class MoveZeros {
 
 class Solution {
     public void moveZeroes(int[] nums) {
-        // [0,k)存放数组中所有非0元素；
+        // 存放下一个满足条件的元素
         int k = 0;
         // 遍历nums，将不为0的元素与[0,k)区间中为0的元素交换位置
         // 循环不变量：[0,k)为不为0的元素区间

@@ -34,34 +34,22 @@ public class RemoveDuplicatesFromSortedArrayII {
 
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int count = 0;
-        int k = 0; // [0,k) 存放去重后的k个元素；
-        // 循环不变量：[0,k)区间为去重后元素区间，随k值增长而扩大；
-        // 遍历nums，将其中元素放入[0,k)区间
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[k] != nums[i]) {
-                k++;
-                if (k != i) swap(nums, k, i);
-                count = 0;
-            }
-
-            if (nums[k] == nums[i] && count > 2) {
-                k++;
-                if (k != i) swap(nums, k, i);
-                count = 0;
-            } else {
-
-                count++;
-            }
+        // 数组长度<=2，直接满足条件
+        if (nums.length <= 2) {
+            return nums.length;
         }
 
-        return k + 1;
-    }
-
-    public void swap(int[] arr, int idx1, int idx2) {
-        int tmp = arr[idx1];
-        arr[idx1] = arr[idx2];
-        arr[idx2] = tmp;
+        int k = 2; // 存放下一个满足条件的元素
+        // 循环不变量：[0,k)区间为去重后元素区间，随k值增长而扩大；
+        // 遍历nums，将其中元素放入[0,k)区间
+        for (int i = 2; i < nums.length; i++) {
+            // 相邻元素是否相等并无碍，故需要间隔1个元素判断
+            if (nums[i] != nums[k - 2]) {
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+        return k;
     }
 }
 

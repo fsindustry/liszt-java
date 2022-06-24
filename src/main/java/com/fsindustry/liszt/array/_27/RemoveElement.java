@@ -91,22 +91,16 @@ public class RemoveElement {
 
 class Solution {
     public int removeElement(int[] nums, int val) {
-        // [0,k)存放未删除的前k个元素
+        // 存放下一个满足条件的元素
         int k = 0;
         // 遍历nums，将所有未被删除元素放入[0,k)区间
         // 循环不变量：[0,k)存放为删除的前k个元素
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] != val) {
-                if (i != k) swap(nums, i, k);
+                if (i != k) nums[k] = nums[i];
                 k++;
             }
         }
         return k;
-    }
-
-    public void swap(int[] arr, int idx1, int idx2) {
-        int tmp = arr[idx1];
-        arr[idx1] = arr[idx2];
-        arr[idx2] = tmp;
     }
 }

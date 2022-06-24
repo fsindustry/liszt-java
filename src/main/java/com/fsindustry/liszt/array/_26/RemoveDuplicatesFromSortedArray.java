@@ -34,23 +34,23 @@ public class RemoveDuplicatesFromSortedArray {
 
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int k = 0; // [0,k) 存放去重后的k个元素；
+
+        // 若数组长度<=1，直接满足条件
+        if (nums.length <= 1) {
+            return nums.length;
+        }
+
+        int k = 1; // 存放下一个满足条件的元素
         // 循环不变量：[0,k)区间为去重后元素区间，随k值增长而扩大；
         // 遍历nums，将其中元素放入[0,k)区间
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[k] != nums[i]) {
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[k - 1]) {
+                nums[k] = nums[i];
                 k++;
-                if (k != i) swap(nums, k, i);
             }
         }
 
-        return k + 1;
-    }
-
-    public void swap(int[] arr, int idx1, int idx2) {
-        int tmp = arr[idx1];
-        arr[idx1] = arr[idx2];
-        arr[idx2] = tmp;
+        return k;
     }
 }
 
