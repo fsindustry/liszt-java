@@ -38,16 +38,21 @@ class Solution {
         int k = 0; // [0,k) 存放去重后的k个元素；
         // 循环不变量：[0,k)区间为去重后元素区间，随k值增长而扩大；
         // 遍历nums，将其中元素放入[0,k)区间
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == nums[k] && count < 3) {
-                count++;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[k] != nums[i]) {
                 k++;
-            } else {
-                swap(nums, k, i);
-                k++;
+                if (k != i) swap(nums, k, i);
                 count = 0;
             }
 
+            if (nums[k] == nums[i] && count > 2) {
+                k++;
+                if (k != i) swap(nums, k, i);
+                count = 0;
+            } else {
+
+                count++;
+            }
         }
 
         return k + 1;
