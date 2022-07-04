@@ -36,6 +36,7 @@ class Solution {
         Map<Character, String> pMap = new HashMap<>();
         Map<String, Character> wordMap = new HashMap<>();
         for (int i = 0; i < words.length; i++) {
+            // 判断 word -> p的映射是否正确
             Character p = wordMap.get(words[i]);
             if (null == p) {
                 wordMap.put(words[i], pattern.charAt(i));
@@ -45,6 +46,7 @@ class Solution {
                 }
             }
 
+            // 判断p -> word的映射是否正确
             String word = pMap.get(pattern.charAt(i));
             if (null == word) {
                 pMap.put(pattern.charAt(i), words[i]);
