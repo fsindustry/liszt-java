@@ -29,21 +29,17 @@ public class IntersectionOfTwoArraysII {
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
 
-        Map<Integer, Integer> map1 = new HashMap<>();
+        Map<Integer, Integer> countMap = new HashMap<>();
         for (int i : nums1) {
-            Integer value = map1.get(i);
-            if (value != null) {
-                map1.put(i, ++value);
-            } else {
-                map1.put(i, 1);
-            }
+            countMap.put(i, countMap.getOrDefault(i, 0) + 1);
         }
+
         List<Integer> result = new ArrayList<>();
         for (int i : nums2) {
-            Integer value = map1.get(i);
+            Integer value = countMap.get(i);
             if (value != null && value > 0) {
-                    result.add(i);
-                map1.put(i, value - 1);
+                result.add(i);
+                countMap.put(i, value - 1);
             }
         }
         return result.stream().mapToInt(Integer::valueOf).toArray();

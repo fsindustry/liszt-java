@@ -1,12 +1,13 @@
 package com.fsindustry.liszt.mapset._451;
 
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 public class SortCharactersByFrequency {
 
     public static void main(String[] args) {
-//        test1();
+        test1();
         test2();
     }
 
@@ -27,22 +28,21 @@ public class SortCharactersByFrequency {
 
 class Solution {
     public String frequencySort(String s) {
-
-        Map<Character, Integer> countMap = new TreeMap<>();
+        // 通过map统计字符串，将相同字符连接成字符串
+        Map<Character, StringBuilder> countMap = new TreeMap<>();
         for (int i = 0; i < s.length(); i++) {
-            Integer count = countMap.computeIfAbsent(s.charAt(i), v -> 0);
-            countMap.put(s.charAt(i), ++count);
+            countMap.put(s.charAt(i), countMap.getOrDefault(s.charAt(i), new StringBuilder()).append(s.charAt(i)));
         }
 
-        int i = 0;
-        char[] res = new char[s.length()];
-        // for-each迭代器的遍历顺序是怎样的？
-        // Tree map的排序顺序是怎样的？
-        for (Map.Entry<Character, Integer> entry : countMap.entrySet()) {
-            for (int j = 0; j < entry.getValue(); j++) {
-                res[i++] = entry.getKey();
-            }
+        // 通过优先队列，对map中的字符串排序，排序依据字符串长度
+        PriorityQueue<StringBuilder> queue = new PriorityQueue<>((a, b) -> (b.length() - a.length()));
+        queue.addAll(countMap.values());
+
+        // 依次按长度从大到小，弹出字符串，拼接返回结果
+        StringBuilder res = new StringBuilder();
+        while (!queue.isEmpty()) {
+            res.append(queue.poll());
         }
-        return String.valueOf(res);
+        return res.toString();
     }
 }
