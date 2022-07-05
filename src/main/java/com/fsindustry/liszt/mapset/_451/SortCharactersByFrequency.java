@@ -1,5 +1,6 @@
 package com.fsindustry.liszt.mapset._451;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
@@ -46,3 +47,29 @@ class Solution {
         return res.toString();
     }
 }
+
+class Solution1 {
+    public String frequencySort(String s) {
+        // 统计字符出现次数，放入map
+        Map<Character, Integer> countMap = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            countMap.put(s.charAt(i), countMap.getOrDefault(s.charAt(i), 0) + 1);
+        }
+
+        // 将字符统计放入优先队列
+        PriorityQueue<Map.Entry<Character, Integer>> queue = new PriorityQueue<>((e1, e2) -> (e2.getValue() - e1.getValue()));
+        queue.addAll(countMap.entrySet());
+
+        // 按照统计次数多少降序拼接字符串
+        StringBuilder builder = new StringBuilder();
+        while (!queue.isEmpty()) {
+            Map.Entry<Character, Integer> entry = queue.poll();
+            for (int i = 0; i < entry.getValue(); i++) {
+                builder.append(entry.getKey());
+            }
+        }
+
+        return builder.toString();
+    }
+}
+
