@@ -1,4 +1,4 @@
-package com.fsindustry.liszt.mapset._15;
+package com.fsindustry.liszt.lut2._15;
 
 import java.util.*;
 
@@ -25,13 +25,13 @@ class Solution {
 
             // 转变为two sum问题
             for (int j = i + 1; j < nums.length; j++) {
-                int left2 = left - nums[j];
+                int nums_k = left - nums[j];
                 // 不能包含重复元素
-                if (used.containsKey(left2) && j != used.get(left2) && i != used.get(left2)) {
+                if (used.containsKey(nums_k) && j != used.get(nums_k) && i != used.get(nums_k)) {
                     List<Integer> tuple = new ArrayList<>(3);
                     tuple.add(nums[i]);
                     tuple.add(nums[j]);
-                    tuple.add(left2);
+                    tuple.add(nums_k);
                     Collections.sort(tuple);
                     result.add(tuple);
                     continue;

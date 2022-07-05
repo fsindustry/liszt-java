@@ -1,11 +1,8 @@
-package com.fsindustry.liszt.mapset._349;
+package com.fsindustry.liszt.lut._350;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*;
 
-public class IntersectionOfTwoArrays {
+public class IntersectionOfTwoArraysII {
 
     public static void main(String[] args) {
         test1();
@@ -17,7 +14,7 @@ public class IntersectionOfTwoArrays {
         int[] nums1 = {1, 2, 2, 1};
         int[] nums2 = {2, 2};
         System.out.println("Input: nums1 = " + Arrays.toString(nums1) + ", nums2 = " + Arrays.toString(nums2));
-        System.out.println("Output: " + Arrays.toString(solution.intersection(nums1, nums2)));
+        System.out.println("Output: " + Arrays.toString(solution.intersect(nums1, nums2)));
     }
 
     public static void test2() {
@@ -25,21 +22,26 @@ public class IntersectionOfTwoArrays {
         int[] nums1 = {4, 9, 5};
         int[] nums2 = {9, 4, 9, 8, 4};
         System.out.println("Input: nums1 = " + Arrays.toString(nums1) + ", nums2 = " + Arrays.toString(nums2));
-        System.out.println("Output: " + Arrays.toString(solution.intersection(nums1, nums2)));
+        System.out.println("Output: " + Arrays.toString(solution.intersect(nums1, nums2)));
     }
 }
 
 class Solution {
-    public int[] intersection(int[] nums1, int[] nums2) {
+    public int[] intersect(int[] nums1, int[] nums2) {
 
-        Set<Integer> set1 = Arrays.stream(nums1).boxed().collect(Collectors.toSet());
-        Set<Integer> result = new HashSet<>();
-        for (int i : nums2) {
-            if (set1.contains(i)) {
-                result.add(i);
-            }
+        Map<Integer, Integer> countMap = new HashMap<>();
+        for (int i : nums1) {
+            countMap.put(i, countMap.getOrDefault(i, 0) + 1);
         }
 
+        List<Integer> result = new ArrayList<>();
+        for (int i : nums2) {
+            Integer value = countMap.get(i);
+            if (value != null && value > 0) {
+                result.add(i);
+                countMap.put(i, value - 1);
+            }
+        }
         return result.stream().mapToInt(Integer::valueOf).toArray();
     }
 }

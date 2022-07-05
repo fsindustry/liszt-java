@@ -1,4 +1,4 @@
-package com.fsindustry.liszt.mapset._290;
+package com.fsindustry.liszt.lut._290;
 
 import java.util.HashMap;
 import java.util.Map;
