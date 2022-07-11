@@ -42,10 +42,10 @@ class Solution {
         for (int a = 0; a < nums.length; a++) {
             long l1 = target - nums[a];
 
-            // 转变为3Sum问题
+            // 固定a，转变为3Sum问题
             for (int b = a + 1; b < nums.length; b++) {
                 long l2 = l1 - nums[b];
-                // 转变为2Sum问题
+                // 固定b，转变为2Sum问题
                 for (int c = b + 1; c < nums.length; c++) {
                     long nums_d = l2 - nums[c];
 

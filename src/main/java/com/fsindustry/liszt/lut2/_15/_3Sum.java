@@ -23,7 +23,7 @@ class Solution {
         for (int i = 0; i < nums.length; i++) {
             int left = target - nums[i];
 
-            // 转变为two sum问题
+            // 固定i，转变为two sum问题
             for (int j = i + 1; j < nums.length; j++) {
                 int nums_k = left - nums[j];
                 // 不能包含重复元素
