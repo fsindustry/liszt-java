@@ -10,6 +10,14 @@ public class ContainsDuplicateIII {
     }
 
     private static void test1() {
+
+        TreeSet<Integer> set = new TreeSet<>();
+        set.add(1);
+        set.add(2);
+        set.add(3);
+
+        System.out.println("ceiling: " + set.ceiling(2) + ", floor: " + set.floor(2));
+
         Solution s = new Solution();
         System.out.println("Output: " + s.containsNearbyAlmostDuplicate(new int[]{2147483640, 2147483641}, 1, 100));
     }
