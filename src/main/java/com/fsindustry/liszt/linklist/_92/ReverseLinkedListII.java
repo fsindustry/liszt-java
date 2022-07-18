@@ -62,6 +62,7 @@ public class ReverseLinkedListII {
         System.out.println(sb);
     }
 
+
 }
 
 
@@ -115,6 +116,47 @@ class Solution {
             start.next = pre;
             cur.next = next;
         }
+
+        return head;
+    }
+}
+
+
+class Solution1 {
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+
+        if (null == head) {
+            return null;
+        }
+
+        // 找起始位置
+        ListNode pre = null;
+        ListNode cur = head;
+        while (left > 1) {
+            pre = cur;
+            cur = cur.next;
+            left--;
+            right--;
+        }
+
+        // 翻转
+        ListNode con = pre, tail = cur;
+        ListNode next = null;
+        while (right > 0) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+            right--;
+        }
+
+        // 拼接队列
+        if (null == con) {
+            head = pre;
+        } else {
+            con.next = pre;
+        }
+        tail.next = cur;
 
         return head;
     }
