@@ -67,6 +67,7 @@ class Solution {
         ListNode cur2 = list2;
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;
+        // 处理cur1和cur2都不为null的情况
         while (cur1 != null && cur2 != null) {
             if (cur1.val > cur2.val) {
                 cur.next = cur2;
@@ -78,6 +79,7 @@ class Solution {
             cur = cur.next;
         }
 
+        // 处理cur1和cur2不同时为null的情况
         if (cur1 == null) {
             cur.next = cur2;
         } else {
