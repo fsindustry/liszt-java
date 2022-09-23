@@ -1,4 +1,4 @@
-package com.fsindustry.liszt.linklist5_doublepoint._143;
+package com.fsindustry.liszt.linklist3_doublepoint._143;
 
 public class ReorderList {
     public static void main(String[] args) {

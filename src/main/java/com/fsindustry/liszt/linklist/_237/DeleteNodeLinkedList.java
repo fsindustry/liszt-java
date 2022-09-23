@@ -1,4 +1,4 @@
-package com.fsindustry.liszt.linklist4_changevalue._237;
+package com.fsindustry.liszt.linklist._237;
 
 public class DeleteNodeLinkedList {
     public static void main(String[] args) {

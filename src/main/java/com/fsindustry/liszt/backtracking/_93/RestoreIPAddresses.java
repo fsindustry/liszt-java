@@ -1,4 +1,4 @@
-package com.fsindustry.liszt.recursion._93;
+package com.fsindustry.liszt.backtracking._93;
 
 import java.util.ArrayList;
 import java.util.Collections;

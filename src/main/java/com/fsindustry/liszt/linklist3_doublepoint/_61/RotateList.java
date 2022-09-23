@@ -1,6 +1,6 @@
-package com.fsindustry.liszt.linklist5_doublepoint._19;
+package com.fsindustry.liszt.linklist3_doublepoint._61;
 
-public class RemoveNthNodeFromEndList {
+public class RotateList {
     public static void main(String[] args) {
         test1();
         test2();
@@ -9,13 +9,13 @@ public class RemoveNthNodeFromEndList {
     private static void test1() {
         int[] head = {1, 2, 3, 4, 5};
         Solution s = new Solution();
-        System.out.println("Output: " + print(s.removeNthFromEnd(build(head), 2)));
+        System.out.println("Output: " + print(s.rotateRight(build(head), 2)));
     }
 
     private static void test2() {
-        int[] head = {1, 2};
+        int[] head = {0, 1, 2};
         Solution s = new Solution();
-        System.out.println("Output: " + print(s.removeNthFromEnd(build(head), 1)));
+        System.out.println("Output: " + print(s.rotateRight(build(head), 4)));
     }
 
     public static ListNode build(int[] headArr) {
@@ -58,29 +58,59 @@ class ListNode {
     }
 }
 
+
 class Solution {
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    public ListNode rotateRight(ListNode head, int k) {
+
         if (null == head) {
             return null;
         }
 
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
+        // 当k > len时，需要缩减k，避免重复翻转整个链表
+        int len = getLen(head);
+        k = k % len;
 
-        // fast指针先移动
+        // 找到翻转起始位置
+        ListNode dummy = new ListNode(0, head);
         ListNode fast = dummy;
-        ListNode slow = dummy;
-        for (int i = 0; i < n + 1; i++) {
-            fast = fast.next;
+        for (int i = 0; i < k + 1; i++) {
+            if (fast.next == null) {
+                fast = dummy;
+            } else {
+                fast = fast.next;
+            }
         }
 
-        // slow和fast保持n个间距移动
+        // 移动slow和fast，使得二者间隔k
+        ListNode slow = dummy;
         while (fast != null) {
             fast = fast.next;
             slow = slow.next;
         }
 
-        slow.next = slow.next.next;
+        // 移动元素到链表头
+        ListNode con = dummy;
+        ListNode tail = slow;
+        slow = slow.next;
+        ListNode tmp = null;
+        while (slow != null) {
+            tmp = slow.next;
+            slow.next = con.next;
+            con.next = slow;
+            slow = tmp;
+            con = con.next;
+        }
+        tail.next = null;
+
         return dummy.next;
+    }
+
+    public int getLen(ListNode listNode) {
+        int i = 0;
+        while (listNode != null) {
+            listNode = listNode.next;
+            i++;
+        }
+        return i;
     }
 }

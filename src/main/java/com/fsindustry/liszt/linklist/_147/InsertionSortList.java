@@ -1,4 +1,4 @@
-package com.fsindustry.liszt.linklist3_swap._147;
+package com.fsindustry.liszt.linklist._147;
 
 public class InsertionSortList {
     public static void main(String[] args) {

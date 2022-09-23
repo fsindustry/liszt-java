@@ -1,4 +1,4 @@
-package com.fsindustry.liszt.linklist3_swap._24;
+package com.fsindustry.liszt.linklist._24;
 
 public class SwapNodesPairs {
 

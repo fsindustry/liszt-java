@@ -1,4 +1,4 @@
-package com.fsindustry.liszt.linklist3_swap._148;
+package com.fsindustry.liszt.linklist._148;
 
 public class SortList {
     public static void main(String[] args) {

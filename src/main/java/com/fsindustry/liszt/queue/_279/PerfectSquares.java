@@ -1,4 +1,4 @@
-package com.fsindustry.liszt.queue._239;
+package com.fsindustry.liszt.queue._279;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -1,4 +1,4 @@
-package com.fsindustry.liszt.linklist5_doublepoint._234;
+package com.fsindustry.liszt.linklist3_doublepoint._234;
 
 public class PalindromeLinkedList {
     public static void main(String[] args) {
