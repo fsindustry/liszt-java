@@ -51,9 +51,50 @@ class ListNode {
     }
 }
 
-
 class Solution {
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return null;
+        assert l1 != null && l2 != null;
+        l1 = reverse(l1);
+        l2 = reverse(l2);
+
+        ListNode dummy = new ListNode(0);
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            int sum = carry;
+            if (l1 != null) sum += l1.val;
+            if (l2 != null) sum += l2.val;
+            carry = sum / 10;
+            if (carry > 0) {
+                sum = sum % 10;
+            }
+
+            ListNode node = new ListNode(sum);
+            node.next = dummy.next;
+            dummy.next = node;
+
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+        }
+
+        if (carry > 0) {
+            ListNode node = new ListNode(carry);
+            node.next = dummy.next;
+            dummy.next = node;
+        }
+
+        return dummy.next;
+    }
+
+    public ListNode reverse(ListNode node) {
+        ListNode pre = null, next = null;
+        ListNode cur = node;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
     }
 }
